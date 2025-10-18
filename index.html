@@ -703,10 +703,370 @@
         
         .erd-success {
             color: #32CD32;
+            animation: successPulse 0.6s ease-in-out;
+        }
+        
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1) rotateZ(2deg); }
+            50% { transform: scale(1.2) rotateZ(-2deg); }
+            75% { transform: scale(1.1) rotateZ(1deg); }
+            100% { transform: scale(1); }
+        }
+        
+        .brocken-success {
+            animation: brockenExplode 0.8s ease-out;
+        }
+        
+        @keyframes brockenExplode {
+            0% { transform: scale(1); background: linear-gradient(45deg, #8B4513, #A0522D); }
+            25% { transform: scale(1.2); background: linear-gradient(45deg, #FFD700, #FFA500); box-shadow: 0 0 30px #FFD700; }
+            50% { transform: scale(1.3); background: linear-gradient(45deg, #32CD32, #7FFF00); box-shadow: 0 0 40px #32CD32; }
+            75% { transform: scale(1.1); background: linear-gradient(45deg, #32CD32, #7FFF00); }
+            100% { transform: scale(1); background: linear-gradient(45deg, #8B4513, #A0522D); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        }
+        
+        .score-anzeige {
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
+            padding: 15px 20px;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            border: 3px solid #FFD700;
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+            animation: scoreGlow 2s infinite alternate;
+        }
+        
+        @keyframes scoreGlow {
+            0% { box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 15px 35px rgba(255, 215, 0, 0.6); }
         }
         
         .erd-error {
             color: #FF4500;
+        }
+        
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            z-index: 2200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+        
+        .login-content {
+            position: relative;
+            margin: 15% auto;
+            width: 90%;
+            max-width: 400px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 3px solid #4169E1;
+        }
+        
+        .login-title {
+            color: #4169E1;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        
+        .login-input {
+            background: rgba(65, 105, 225, 0.1);
+            border: 2px solid #4169E1;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 18px;
+            color: #fff;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .login-input:focus {
+            outline: none;
+            border-color: #6495ED;
+            background: rgba(65, 105, 225, 0.2);
+        }
+        
+        .login-button {
+            background: linear-gradient(45deg, #4169E1, #6495ED);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .login-button:hover {
+            background: linear-gradient(45deg, #6495ED, #87CEEB);
+            transform: translateY(-2px);
+        }
+        
+        .user-info {
+            display: none;
+            background: rgba(65, 105, 225, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px;
+            border: 2px solid #4169E1;
+        }
+        
+        .current-user {
+            color: #6495ED;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* Spielstatistiken */
+        .spiel-listen-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .spiel-liste {
+            background: rgba(139, 69, 19, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #8B4513;
+        }
+        
+        .liste-titel {
+            color: #CD853F;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .spiel-eintrag {
+            display: grid;
+            grid-template-columns: 1fr 80px 60px 80px 80px;
+            gap: 10px;
+            background: rgba(139, 69, 19, 0.2);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            align-items: center;
+            border: 1px solid #8B4513;
+            font-size: 14px;
+        }
+        
+        .spiel-datum {
+            color: #DEB887;
+            font-size: 12px;
+        }
+        
+        .spiel-score {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .spiel-antworten {
+            color: #32CD32;
+            font-weight: bold;
+        }
+        
+        .spiel-zeit {
+            color: #87CEEB;
+            font-weight: bold;
+        }
+        
+        .spiel-settings {
+            color: #DEB887;
+            font-size: 11px;
+        }
+        
+        .benutzer-stats {
+            background: rgba(65, 105, 225, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #4169E1;
+            margin: 20px 0;
+        }
+        
+        .benutzer-stats h4 {
+            color: #6495ED;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .stat-box {
+            background: rgba(65, 105, 225, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #87CEEB;
+            font-weight: bold;
+            border: 1px solid #4169E1;
+        }
+        
+        /* Einstellungen Modal */
+        .erd-einstellungen-modal {
+            display: none;
+            position: fixed;
+            z-index: 2100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+        
+        .erd-einstellungen-content {
+            position: relative;
+            margin: 3% auto;
+            width: 90%;
+            max-width: 700px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        
+        .einstellungen-title {
+            color: #DEB887;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+        
+        .einstellungen-gruppe {
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .einstellungen-label {
+            color: #CD853F;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .einstellungen-input {
+            background: rgba(222, 184, 135, 0.1);
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 18px;
+            color: #DEB887;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .einstellungen-beschreibung {
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+        }
+        
+        .highscore-container {
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .highscore-title {
+            color: #FFD700;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .highscore-eintrag {
+            display: grid;
+            grid-template-columns: 50px 90px 80px 100px 1fr;
+            gap: 15px;
+            background: rgba(139, 69, 19, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+            border: 1px solid #8B4513;
+        }
+        
+        .rang {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .punkte {
+            color: #32CD32;
+            font-weight: bold;
+        }
+        
+        .zeit {
+            color: #87CEEB;
+            font-weight: bold;
+        }
+        
+        .geschwindigkeit {
+            color: #FF6B6B;
+            font-weight: bold;
+        }
+        
+        .einstellungen {
+            color: #DEB887;
+            font-size: 12px;
+        }
+        
+        .spiel-stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            color: #DEB887;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .stat-item {
+            background: rgba(139, 69, 19, 0.3);
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #8B4513;
+        }
+        
+        .hotkey-hinweise {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #888;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .hotkey-hinweise span {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+            border: 1px solid #555;
         }
         
         @media (max-width: 768px) {
@@ -801,8 +1161,75 @@
             .erd-submit {
                 margin-left: 0;
                 margin-top: 20px;
+                font-size: 16px;
+                padding: 12px 20px;
+                flex: 1;
+                min-width: 140px;
+            }
+            
+            .spiel-stats {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .score-anzeige {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 0 auto 20px auto;
                 font-size: 18px;
-                padding: 15px 30px;
+            }
+            
+            .highscore-eintrag {
+                grid-template-columns: 40px 70px 60px 80px 1fr;
+                gap: 10px;
+                font-size: 14px;
+            }
+            
+            .einstellungen-input {
+                font-size: 16px;
+            }
+            
+            .hotkey-hinweise {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin-top: 20px;
+            }
+            
+            .spiel-listen-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .spiel-eintrag {
+                grid-template-columns: 1fr 60px 50px 70px;
+                gap: 8px;
+                font-size: 12px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .login-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+            }
+            
+            .video-button {
+                font-size: 14px;
+                padding: 12px 20px;
+            }
+            
+            .login-button {
+                font-size: 16px;
+                padding: 12px 20px;
             }
         }
         
@@ -836,6 +1263,19 @@
         
         <div id="hauptmenu" class="menu">
             <h2>=== NeuroGames Hauptmenü ===</h2>
+            
+            <!-- Login/User Info -->
+            <div class="user-info" id="userInfo">
+                <div class="current-user">👤 Angemeldet als: <span id="currentUsername"></span></div>
+                <button class="login-button" onclick="abmelden()">🚪 Abmelden</button>
+            </div>
+            
+            <div style="text-align: center; margin: 20px;">
+                <button id="loginButton" class="login-button" onclick="zeigeLoginModal()">
+                    👤 Anmelden für Statistiken
+                </button>
+            </div>
+            
             <button class="menu-button menu-btn-1" onclick="zeigeSpielmenu()">🎮 Spielen</button>
             <button class="menu-button menu-btn-2" onclick="zeigeDorf()">🏘️ Dorf besuchen</button>
             <button class="menu-button menu-btn-3" onclick="zeigeNachricht('Einstellungen', '⚙️ Einstellungen werden geladen...\n\nVerfügbare Optionen:\n• Grafik-Qualität\n• Sound-Einstellungen\n• Steuerung anpassen')">⚙️ Einstellungen</button>
@@ -878,7 +1318,10 @@
         <div class="modal-content">
             <div id="modal-title" class="modal-title"></div>
             <div id="modal-text" class="modal-text"></div>
-            <button class="modal-button" onclick="schliesseModal()">Verstanden</button>
+            <button class="modal-button" onclick="schliesseModal()">↩️ Zurück</button>
+            <div style="text-align: center; margin-top: 15px; color: #888; font-size: 14px;">
+                <strong>Hotkey:</strong> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">ESC</span> Zurück
+            </div>
         </div>
     </div>
 
@@ -1055,37 +1498,169 @@
         // Spiel-Menü Funktionen
         function schliesseSpielmenu() {
             document.getElementById('spielMenuModal').style.display = 'none';
+            // Zurück zum Hauptmenü
+            zeigeHauptmenu();
+        }
+        
+        function geheZumDorfVonSpielmenu() {
+            document.getElementById('spielMenuModal').style.display = 'none';
+            zeigeDorf();
+        }
+        
+        function zurueckZumSpielmenueVonEinstellungen() {
+            document.getElementById('erdEinstellungenModal').style.display = 'none';
+            document.getElementById('spielMenuModal').style.display = 'block';
+        }
+        
+        function geheZumDorfVonEinstellungen() {
+            document.getElementById('erdEinstellungenModal').style.display = 'none';
+            zeigeDorf();
         }
         
         // Erd-Addition Spiel Funktionen
         let aktuellerLevel = 1;
         let aktuelleAufgabe = {};
+        let spielStats = {
+            richtigeAntworten: 0,
+            startZeit: null,
+            aktuelleZeit: 0,
+            mana: 10,
+            brockenAnzahl: 2,
+            aktuellerScore: 0
+        };
+        
+        let aktuellerBenutzer = {
+            name: null,
+            isLoggedIn: false
+        };
+        let spielTimer = null;
         
         function starteErdAddition() {
             schliesseSpielmenu();
+            zeigeEinstellungsModal();
+        }
+        
+        function zeigeEinstellungsModal() {
+            // Prüfe Login-Status
+            if (!aktuellerBenutzer.isLoggedIn) {
+                zeigeLoginModal();
+                return;
+            }
+            
+            document.getElementById('erdEinstellungenModal').style.display = 'block';
+            ladeAlleSpielStatistiken();
+        }
+        
+        function starteSpielMitEinstellungen() {
+            const mana = parseInt(document.getElementById('manaInput').value) || 10;
+            const brockenAnzahl = parseInt(document.getElementById('brockenAnzahlInput').value) || 2;
+            
+            spielStats.mana = mana;
+            spielStats.brockenAnzahl = brockenAnzahl;
+            spielStats.richtigeAntworten = 0;
+            spielStats.aktuellerScore = 0;
+            spielStats.startZeit = Date.now();
+            spielStats.aktuelleZeit = 0;
+            
+            document.getElementById('erdEinstellungenModal').style.display = 'none';
             document.getElementById('erdAdditionModal').style.display = 'block';
+            
+            // Timer starten
+            spielTimer = setInterval(aktualisiereTimer, 100);
+            
             starteLevel(1);
+        }
+        
+        function aktualisiereTimer() {
+            if (spielStats.startZeit) {
+                spielStats.aktuelleZeit = Date.now() - spielStats.startZeit;
+                const sekunden = (spielStats.aktuelleZeit / 1000).toFixed(1);
+                document.getElementById('timerAnzeige').textContent = `⏱️ ${sekunden}s`;
+                
+                // Score berechnen und aktualisieren
+                berechneUndZeigeScore();
+            }
+        }
+        
+        function berechneUndZeigeScore() {
+            if (spielStats.richtigeAntworten > 0 && spielStats.aktuelleZeit > 0) {
+                // Formel: (Mana × Brocken × RichtigeAntworten²) / Zeit / 100
+                const zeitInSekunden = spielStats.aktuelleZeit / 1000;
+                const rawScore = (spielStats.mana * spielStats.brockenAnzahl * Math.pow(spielStats.richtigeAntworten, 2)) / zeitInSekunden / 100;
+                spielStats.aktuellerScore = Math.round(rawScore);
+                
+                document.getElementById('scoreAnzeige').textContent = `🏆 ${spielStats.aktuellerScore} Punkte`;
+            } else {
+                document.getElementById('scoreAnzeige').textContent = `🏆 0 Punkte`;
+            }
         }
         
         function starteLevel(level) {
             aktuellerLevel = level;
-            document.getElementById('erdLevel').textContent = `Level ${level}: Zwei Brocken werden zu einem großen Brocken`;
+            const beschreibung = spielStats.brockenAnzahl === 2 ? 
+                'Zwei Brocken werden zu einem großen Brocken' :
+                `${spielStats.brockenAnzahl} Brocken werden zu einem großen Brocken`;
             
-            // Zufällige Zahlen generieren (1-10 für Level 1)
-            const maxZahl = 10;
-            const a = Math.floor(Math.random() * maxZahl) + 1;
-            const b = Math.floor(Math.random() * maxZahl) + 1;
+            document.getElementById('erdLevel').textContent = `Level ${level}: ${beschreibung}`;
             
-            aktuelleAufgabe = { a: a, b: b, antwort: a + b };
+            // Zufällige Zahlen generieren basierend auf Mana
+            const zahlen = [];
+            let summe = 0;
             
-            // Brocken anzeigen
-            document.getElementById('brocken1').textContent = a;
-            document.getElementById('brocken2').textContent = b;
+            for (let i = 0; i < spielStats.brockenAnzahl; i++) {
+                const zahl = Math.floor(Math.random() * spielStats.mana) + 1;
+                zahlen.push(zahl);
+                summe += zahl;
+            }
+            
+            aktuelleAufgabe = { zahlen: zahlen, antwort: summe };
+            
+            // Brocken-Container aktualisieren
+            aktualisiereSpielAnzeige();
             
             // Eingabefeld leeren und Ergebnis zurücksetzen
             document.getElementById('erdAntwort').value = '';
             document.getElementById('erdErgebnis').innerHTML = '';
             document.getElementById('erdErgebnis').className = 'erd-result';
+            
+            // Focus auf Eingabe setzen
+            setTimeout(() => document.getElementById('erdAntwort').focus(), 100);
+        }
+        
+        function aktualisiereSpielAnzeige() {
+            const container = document.getElementById('brockenContainer');
+            container.innerHTML = '';
+            
+            // Brocken hinzufügen
+            aktuelleAufgabe.zahlen.forEach((zahl, index) => {
+                const brocken = document.createElement('div');
+                brocken.className = 'brocken';
+                brocken.textContent = zahl;
+                container.appendChild(brocken);
+                
+                // Plus-Zeichen zwischen Brocken (außer nach dem letzten)
+                if (index < aktuelleAufgabe.zahlen.length - 1) {
+                    const plus = document.createElement('div');
+                    plus.className = 'plus-zeichen';
+                    plus.textContent = '+';
+                    container.appendChild(plus);
+                }
+            });
+            
+            // Gleichheitszeichen und Fragezeichen
+            const equals = document.createElement('div');
+            equals.className = 'plus-zeichen';
+            equals.textContent = '=';
+            container.appendChild(equals);
+            
+            const question = document.createElement('div');
+            question.className = 'plus-zeichen';
+            question.textContent = '?';
+            container.appendChild(question);
+            
+            // Stats aktualisieren
+            document.getElementById('counterAnzeige').textContent = `✅ ${spielStats.richtigeAntworten}`;
+            berechneUndZeigeScore();
         }
         
         function pruefeErdAntwort() {
@@ -1098,41 +1673,423 @@
                 return;
             }
             
+            const zeitpunkt = Date.now();
+            const aufgabenString = aktuelleAufgabe.zahlen.join(' + ');
+            
             if (eingabe === aktuelleAufgabe.antwort) {
+                spielStats.richtigeAntworten++;
+                
+                // SOFORTIGE Animation der Brocken
+                const brocken = document.querySelectorAll('.brocken');
+                brocken.forEach(b => b.classList.add('brocken-success'));
+                
                 ergebnisDiv.innerHTML = `
-                    ✅ Richtig! ${aktuelleAufgabe.a} + ${aktuelleAufgabe.b} = ${aktuelleAufgabe.antwort}
+                    ✅ Richtig! ${aufgabenString} = ${aktuelleAufgabe.antwort}
                     <br>🎉 Die Brocken wurden erfolgreich verbunden!
                 `;
                 ergebnisDiv.className = 'erd-result erd-success';
                 
-                // Nach 3 Sekunden neue Aufgabe
+                // Log-Eintrag für richtige Antwort
+                loggeSpielEreignis({
+                    zeitpunkt: zeitpunkt,
+                    aufgabe: aufgabenString,
+                    antwort: eingabe,
+                    korrekt: true,
+                    spielZeit: spielStats.aktuelleZeit,
+                    counter: spielStats.richtigeAntworten,
+                    score: spielStats.aktuellerScore
+                });
+                
+                // Direkt nach Animation (1 Sekunde) zur nächsten Aufgabe
                 setTimeout(() => {
-                    starteLevel(aktuellerLevel);
-                }, 3000);
+                    naechsteAufgabe();
+                }, 1000);
                 
             } else {
                 ergebnisDiv.innerHTML = `
-                    ❌ Nicht ganz richtig. Versuchen Sie es noch einmal!
-                    <br>💡 Tipp: Zählen Sie die Brocken zusammen.
+                    ❌ Nicht ganz richtig. Die richtige Antwort ist ${aktuelleAufgabe.antwort}
+                    <br>💡 Tipp: ${aufgabenString} = ${aktuelleAufgabe.antwort}
                 `;
                 ergebnisDiv.className = 'erd-result erd-error';
+                
+                // Log-Eintrag für falsche Antwort
+                loggeSpielEreignis({
+                    zeitpunkt: zeitpunkt,
+                    aufgabe: aufgabenString,
+                    antwort: eingabe,
+                    korrekt: false,
+                    richtigeAntwort: aktuelleAufgabe.antwort,
+                    spielZeit: spielStats.aktuelleZeit,
+                    counter: spielStats.richtigeAntworten,
+                    score: spielStats.aktuellerScore
+                });
             }
+        }
+        
+        function naechsteAufgabe() {
+            starteLevel(aktuellerLevel + 1);
         }
         
         function schliesseErdAddition() {
+            // Timer stoppen
+            if (spielTimer) {
+                clearInterval(spielTimer);
+                spielTimer = null;
+            }
+            
+            // Spiel-Session beenden und Ergebnis speichern
+            if (spielStats.richtigeAntworten > 0) {
+                speichereSpielErgebnis();
+            }
+            
+            document.getElementById('erdAdditionModal').style.display = 'none';
+            // Zurück zum Hauptmenü
+            zeigeHauptmenu();
+        }
+        
+        function zurueckZumSpielmenu() {
+            // Timer stoppen
+            if (spielTimer) {
+                clearInterval(spielTimer);
+                spielTimer = null;
+            }
+            
+            // Spiel-Session beenden und Ergebnis speichern
+            if (spielStats.richtigeAntworten > 0) {
+                speichereSpielErgebnis();
+            }
+            
+            document.getElementById('erdAdditionModal').style.display = 'none';
+            // Bleibe im Spiel-Menü - das ist der gewünschte neue Workflow
+            document.getElementById('spielMenuModal').style.display = 'block';
+        }
+        
+        function geheZumDorf() {
+            // Timer stoppen
+            if (spielTimer) {
+                clearInterval(spielTimer);
+                spielTimer = null;
+            }
+            
+            // Spiel-Session beenden und Ergebnis speichern
+            if (spielStats.richtigeAntworten > 0) {
+                speichereSpielErgebnis();
+            }
+            
+            document.getElementById('erdAdditionModal').style.display = 'none';
+            // Gehe direkt zum Dorf (Bild-Seite)
+            zeigeDorf();
+        }
+        
+        function schliesseEinstellungen() {
+            document.getElementById('erdEinstellungenModal').style.display = 'none';
+            // Zurück zum Hauptmenü
+            zeigeHauptmenu();
+        }
+        
+        // Logging-System
+        function loggeSpielEreignis(ereignis) {
+            const logs = JSON.parse(localStorage.getItem('erdAdditionLogs') || '[]');
+            logs.push({
+                ...ereignis,
+                session: Date.now(),
+                mana: spielStats.mana,
+                brockenAnzahl: spielStats.brockenAnzahl
+            });
+            
+            // Nur die letzten 1000 Einträge behalten
+            if (logs.length > 1000) {
+                logs.splice(0, logs.length - 1000);
+            }
+            
+            localStorage.setItem('erdAdditionLogs', JSON.stringify(logs));
+        }
+        
+        function speichereSpielErgebnis() {
+            if (!aktuellerBenutzer.isLoggedIn) return;
+            
+            const neuesSpiel = {
+                benutzer: aktuellerBenutzer.name,
+                datum: new Date().toLocaleDateString('de-DE'),
+                zeit: new Date().toLocaleTimeString('de-DE'),
+                timestamp: Date.now(),
+                richtigeAntworten: spielStats.richtigeAntworten,
+                spielZeit: spielStats.aktuelleZeit,
+                score: spielStats.aktuellerScore,
+                mana: spielStats.mana,
+                brockenAnzahl: spielStats.brockenAnzahl,
+                geschwindigkeit: (spielStats.richtigeAntworten / (spielStats.aktuelleZeit / 1000)).toFixed(2)
+            };
+            
+            // Zu beiden Listen hinzufügen
+            speichereInLetzteSpiele(neuesSpiel);
+            speichereInBesteSpiele(neuesSpiel);
+            aktualisiereBenutzerStats(neuesSpiel);
+        }
+        
+        function speichereInLetzteSpiele(spiel) {
+            const benutzerKey = `letzteSpiele_${aktuellerBenutzer.name}`;
+            const letzteSpiele = JSON.parse(localStorage.getItem(benutzerKey) || '[]');
+            
+            letzteSpiele.unshift(spiel); // Am Anfang hinzufügen
+            
+            // Nur die letzten 3 behalten
+            if (letzteSpiele.length > 3) {
+                letzteSpiele.splice(3);
+            }
+            
+            localStorage.setItem(benutzerKey, JSON.stringify(letzteSpiele));
+        }
+        
+        function speichereInBesteSpiele(spiel) {
+            const benutzerKey = `besteSpiele_${aktuellerBenutzer.name}`;
+            const besteSpiele = JSON.parse(localStorage.getItem(benutzerKey) || '[]');
+            
+            besteSpiele.push(spiel);
+            
+            // Nach Score sortieren (höchste zuerst)
+            besteSpiele.sort((a, b) => {
+                if (b.score !== a.score) {
+                    return b.score - a.score;
+                }
+                if (b.richtigeAntworten !== a.richtigeAntworten) {
+                    return b.richtigeAntworten - a.richtigeAntworten;
+                }
+                return a.spielZeit - b.spielZeit;
+            });
+            
+            // Nur Top 5 behalten
+            if (besteSpiele.length > 5) {
+                besteSpiele.splice(5);
+            }
+            
+            localStorage.setItem(benutzerKey, JSON.stringify(besteSpiele));
+        }
+        
+        function aktualisiereBenutzerStats(spiel) {
+            const statsKey = `benutzerStats_${aktuellerBenutzer.name}`;
+            const stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
+            
+            stats.gesamtSpiele = (stats.gesamtSpiele || 0) + 1;
+            stats.gesamtScore = (stats.gesamtScore || 0) + spiel.score;
+            stats.gesamtRichtigeAntworten = (stats.gesamtRichtigeAntworten || 0) + spiel.richtigeAntworten;
+            stats.gesamtSpielzeit = (stats.gesamtSpielzeit || 0) + spiel.spielZeit;
+            stats.bestScore = Math.max(stats.bestScore || 0, spiel.score);
+            stats.durchschnittScore = Math.round(stats.gesamtScore / stats.gesamtSpiele);
+            
+            localStorage.setItem(statsKey, JSON.stringify(stats));
+        }
+        
+        function ladeAlleSpielStatistiken() {
+            if (!aktuellerBenutzer.isLoggedIn) return;
+            
+            ladeLetzteSpiele();
+            ladeBesteSpiele();
+            ladeBenutzerStats();
+        }
+        
+        function ladeLetzteSpiele() {
+            const benutzerKey = `letzteSpiele_${aktuellerBenutzer.name}`;
+            const letzteSpiele = JSON.parse(localStorage.getItem(benutzerKey) || '[]');
+            const container = document.getElementById('letzteSpieleList');
+            
+            if (letzteSpiele.length === 0) {
+                container.innerHTML = '<div style="color: #888; font-style: italic;">Noch keine Spiele gespielt</div>';
+                return;
+            }
+            
+            container.innerHTML = letzteSpiele.map((spiel, index) => `
+                <div class="spiel-eintrag">
+                    <span class="spiel-datum">${spiel.datum} ${spiel.zeit}</span>
+                    <span class="spiel-score">🏆 ${spiel.score}</span>
+                    <span class="spiel-antworten">✅ ${spiel.richtigeAntworten}</span>
+                    <span class="spiel-zeit">⏱️ ${(spiel.spielZeit / 1000).toFixed(1)}s</span>
+                    <span class="spiel-settings">🌍${spiel.mana} 🪨${spiel.brockenAnzahl}</span>
+                </div>
+            `).join('');
+        }
+        
+        function ladeBesteSpiele() {
+            const benutzerKey = `besteSpiele_${aktuellerBenutzer.name}`;
+            const besteSpiele = JSON.parse(localStorage.getItem(benutzerKey) || '[]');
+            const container = document.getElementById('besteSpieleList');
+            
+            if (besteSpiele.length === 0) {
+                container.innerHTML = '<div style="color: #888; font-style: italic;">Noch keine Bestleistungen</div>';
+                return;
+            }
+            
+            container.innerHTML = besteSpiele.map((spiel, index) => `
+                <div class="highscore-eintrag">
+                    <span class="rang">#${index + 1}</span>
+                    <span class="punkte">🏆 ${spiel.score}</span>
+                    <span class="punkte">✅ ${spiel.richtigeAntworten}</span>
+                    <span class="zeit">⏱️ ${(spiel.spielZeit / 1000).toFixed(1)}s</span>
+                    <span class="einstellungen">${spiel.datum}</span>
+                </div>
+            `).join('');
+        }
+        
+        function ladeBenutzerStats() {
+            const statsKey = `benutzerStats_${aktuellerBenutzer.name}`;
+            const stats = JSON.parse(localStorage.getItem(statsKey) || '{}');
+            const container = document.getElementById('benutzerStatsContainer');
+            
+            const gesamtSpiele = stats.gesamtSpiele || 0;
+            const durchschnittScore = stats.durchschnittScore || 0;
+            const bestScore = stats.bestScore || 0;
+            const gesamtSpielzeitSek = Math.round((stats.gesamtSpielzeit || 0) / 1000);
+            
+            container.innerHTML = `
+                <div class="benutzer-stats">
+                    <h4>📊 ${aktuellerBenutzer.name}'s Statistiken</h4>
+                    <div class="stats-grid">
+                        <div class="stat-box">🎮 ${gesamtSpiele} Spiele</div>
+                        <div class="stat-box">🏆 ${bestScore} Rekord</div>
+                        <div class="stat-box">📈 ⌀${durchschnittScore} Ø-Score</div>
+                        <div class="stat-box">⏱️ ${gesamtSpielzeitSek}s gespielt</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Universelles ESC-Hotkey-System - immer einen Schritt zurück
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                // Prüfe welches Modal aktiv ist und führe entsprechende Zurück-Aktion aus
+                if (document.getElementById('erdAdditionModal').style.display === 'block') {
+                    zurueckZumSpielmenu();
+                } else if (document.getElementById('erdEinstellungenModal').style.display === 'block') {
+                    zurueckZumSpielmenueVonEinstellungen();
+                } else if (document.getElementById('spielMenuModal').style.display === 'block') {
+                    schliesseSpielmenu();
+                } else if (document.getElementById('loginModal').style.display === 'block') {
+                    schliesseLoginModal();
+                } else if (document.getElementById('videoModal').style.display === 'block') {
+                    schliesseVideo();
+                } else if (document.querySelector('.modal').style.display === 'block') {
+                    schliesseModal();
+                }
+                return;
+            }
+            
+            // Spezifische Hotkeys nur wenn Erd-Addition Spiel aktiv ist
+            if (document.getElementById('erdAdditionModal').style.display === 'block') {
+                switch(e.key) {
+                    case 'f': // Nächste Aufgabe (F-Taste)
+                    case 'F':
+                        e.preventDefault();
+                        naechsteAufgabe();
+                        break;
+                    case 'Enter':
+                        e.preventDefault();
+                        pruefeErdAntwort();
+                        break;
+                }
+            } else if (document.getElementById('erdEinstellungenModal').style.display === 'block') {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        starteSpielMitEinstellungen();
+                        break;
+                }
+            } else if (document.getElementById('loginModal').style.display === 'block') {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        anmelden();
+                        break;
+                }
+            }
+        });
+        
+        // Account-System Funktionen
+        function zeigeLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+            document.getElementById('loginUsername').focus();
+        }
+        
+        function schliesseLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+        
+        function anmelden() {
+            const username = document.getElementById('loginUsername').value.trim();
+            
+            if (username.length < 3) {
+                alert('Benutzername muss mindestens 3 Zeichen lang sein!');
+                return;
+            }
+            
+            // Speichere den angemeldeten Benutzer
+            aktuellerBenutzer.name = username;
+            aktuellerBenutzer.isLoggedIn = true;
+            localStorage.setItem('aktuellerBenutzer', JSON.stringify(aktuellerBenutzer));
+            
+            // Erstelle Benutzer-Account falls nicht vorhanden
+            erstelleBenutzerAccountFallsNoetig(username);
+            
+            schliesseLoginModal();
+            zeigeEinstellungsModal();
+            
+            // Aktualisiere UI
+            aktualisiereLoginAnzeigen();
+        }
+        
+        function abmelden() {
+            aktuellerBenutzer.name = null;
+            aktuellerBenutzer.isLoggedIn = false;
+            localStorage.removeItem('aktuellerBenutzer');
+            
+            // Aktualisiere UI
+            aktualisiereLoginAnzeigen();
+            
+            // Schließe alle Spiel-Modals
+            document.getElementById('erdEinstellungenModal').style.display = 'none';
             document.getElementById('erdAdditionModal').style.display = 'none';
         }
         
-        // Enter-Taste für Eingabe
-        document.addEventListener('DOMContentLoaded', function() {
-            const erdInput = document.getElementById('erdAntwort');
-            if (erdInput) {
-                erdInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        pruefeErdAntwort();
-                    }
-                });
+        function erstelleBenutzerAccountFallsNoetig(username) {
+            const accountKey = `account_${username}`;
+            const existierenderAccount = localStorage.getItem(accountKey);
+            
+            if (!existierenderAccount) {
+                const neuerAccount = {
+                    username: username,
+                    erstelltAm: new Date().toISOString(),
+                    letzterLogin: new Date().toISOString()
+                };
+                localStorage.setItem(accountKey, JSON.stringify(neuerAccount));
+            } else {
+                // Aktualisiere letzten Login
+                const account = JSON.parse(existierenderAccount);
+                account.letzterLogin = new Date().toISOString();
+                localStorage.setItem(accountKey, JSON.stringify(account));
             }
+        }
+        
+        function aktualisiereLoginAnzeigen() {
+            const loginBtn = document.getElementById('loginButton');
+            const userInfo = document.getElementById('userInfo');
+            
+            if (aktuellerBenutzer.isLoggedIn) {
+                loginBtn.style.display = 'none';
+                userInfo.style.display = 'block';
+                document.getElementById('currentUsername').textContent = aktuellerBenutzer.name;
+            } else {
+                loginBtn.style.display = 'block';
+                userInfo.style.display = 'none';
+            }
+        }
+        
+        // Beim Laden der Seite prüfen ob Benutzer eingeloggt ist
+        document.addEventListener('DOMContentLoaded', function() {
+            const gespeicherterBenutzer = localStorage.getItem('aktuellerBenutzer');
+            if (gespeicherterBenutzer) {
+                aktuellerBenutzer = JSON.parse(gespeicherterBenutzer);
+            }
+            aktualisiereLoginAnzeigen();
         });
     </script>
     
@@ -1152,8 +2109,12 @@
                     🖥️ Vollbild
                 </button>
                 <button class="video-button close" onclick="schliesseVideo()">
-                    ❌ Schließen
+                    ↩️ Zurück
                 </button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 15px; color: #888; font-size: 14px;">
+                <strong>Hotkey:</strong> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">ESC</span> Zurück
             </div>
         </div>
     </div>
@@ -1172,22 +2133,82 @@
                     <br><small>Coming Soon...</small>
                 </button>
             </div>
-            <button class="video-button close" onclick="schliesseSpielmenu()">
-                ❌ Zurück
-            </button>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="video-button" onclick="schliesseSpielmenu()">↩️ Zurück zum Hauptmenü</button>
+                <button class="video-button" onclick="geheZumDorfVonSpielmenu()">🏘️ Zum Dorf</button>
+            </div>
+            
+            <div class="hotkey-hinweise">
+                <strong>Hotkeys:</strong> <span>ESC</span> Zurück zum Hauptmenü
+            </div>
+        </div>
+    </div>
+    
+    <!-- Erd-Addition Einstellungen Modal -->
+    <div id="erdEinstellungenModal" class="erd-einstellungen-modal">
+        <div class="erd-einstellungen-content">
+            <h2 class="einstellungen-title">⚙️ Erd-Addition Konfiguration</h2>
+            
+            <div class="einstellungen-gruppe">
+                <label class="einstellungen-label" for="manaInput">🔮 Mana (Schwierigkeitsgrad):</label>
+                <input type="number" id="manaInput" class="einstellungen-input" value="10" min="1" max="100" />
+                <div class="einstellungen-beschreibung">
+                    Bestimmt den Zahlenbereich (1 bis Mana). Höhere Werte = schwieriger
+                </div>
+            </div>
+            
+            <div class="einstellungen-gruppe">
+                <label class="einstellungen-label" for="brockenAnzahlInput">🪨 Anzahl der Brocken:</label>
+                <input type="number" id="brockenAnzahlInput" class="einstellungen-input" value="2" min="2" max="5" />
+                <div class="einstellungen-beschreibung">
+                    Wie viele Brocken sollen pro Aufgabe kombiniert werden?
+                </div>
+            </div>
+            
+            <div id="benutzerStatsContainer"></div>
+            
+            <div class="spiel-listen-container">
+                <div class="spiel-liste">
+                    <h3 class="liste-titel">📅 Letzte 3 Spiele</h3>
+                    <div id="letzteSpieleList"></div>
+                </div>
+                
+                <div class="spiel-liste">
+                    <h3 class="liste-titel">🏆 Beste 5 Spiele</h3>
+                    <div id="besteSpieleList"></div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <button class="erd-submit" onclick="starteSpielMitEinstellungen()">🚀 Spiel starten</button>
+                <button class="video-button" onclick="zurueckZumSpielmenueVonEinstellungen()">↩️ Zurück zum Spiel-Menü</button>
+                <button class="video-button" onclick="geheZumDorfVonEinstellungen()">🏘️ Zum Dorf</button>
+                <button class="video-button close" onclick="schliesseEinstellungen()">❌ Hauptmenü</button>
+            </div>
+            
+            <div class="hotkey-hinweise">
+                <strong>Hotkeys:</strong> <span>Enter</span> Starten | <span>ESC</span> Zurück zum Spiel-Menü
+            </div>
         </div>
     </div>
     
     <!-- Erd-Addition Spiel Modal -->
     <div id="erdAdditionModal" class="erd-addition-modal">
         <div class="erd-addition-content">
+            <div class="spiel-stats">
+                <div class="stat-item" id="counterAnzeige">✅ 0</div>
+                <div class="stat-item" id="timerAnzeige">⏱️ 0.0s</div>
+            </div>
+            
+            <div class="score-anzeige" id="scoreAnzeige">🏆 0</div>
+            
             <h2 class="erd-title">🌍 Erd-Addition</h2>
             <p id="erdLevel" class="erd-level">Level 1: Zwei Brocken werden zu einem großen Brocken</p>
             
-            <div class="brocken-container">
-                <div class="brocken" id="brocken1">5</div>
+            <div id="brockenContainer" class="brocken-container">
+                <div class="brocken">5</div>
                 <div class="plus-zeichen">+</div>
-                <div class="brocken" id="brocken2">3</div>
+                <div class="brocken">3</div>
                 <div class="plus-zeichen">=</div>
                 <div class="plus-zeichen">?</div>
             </div>
@@ -1197,14 +2218,47 @@
                     🪨 Verbinden Sie die Brocken! Wie groß ist der neue Brocken?
                 </p>
                 <input type="number" id="erdAntwort" class="erd-input" placeholder="Ihre Antwort..." />
-                <button class="erd-submit" onclick="pruefeErdAntwort()">✨ Verbinden</button>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+                    <button class="erd-submit" onclick="pruefeErdAntwort()">✨ Verbinden</button>
+                    <button class="erd-submit" onclick="naechsteAufgabe()" style="background: linear-gradient(45deg, #4169E1, #6495ED);">⏭️ Nächste Aufgabe</button>
+                </div>
             </div>
             
             <div id="erdErgebnis" class="erd-result"></div>
             
             <div style="margin-top: 30px;">
-                <button class="video-button" onclick="starteLevel(1)">🔄 Neue Aufgabe</button>
-                <button class="video-button close" onclick="schliesseErdAddition()">❌ Beenden</button>
+                <button class="video-button" onclick="zurueckZumSpielmenu()">↩️ Zurück zum Spiel-Menü</button>
+                <button class="video-button" onclick="geheZumDorf()">🏘️ Zum Dorf</button>
+                <button class="video-button close" onclick="schliesseErdAddition()">❌ Hauptmenü</button>
+            </div>
+            
+            <div class="hotkey-hinweise">
+                <strong>Hotkeys:</strong> <span>Enter</span> Antworten | <span>F</span> Nächste Aufgabe | <span>ESC</span> Zurück zum Spiel-Menü
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal">
+        <div class="login-content">
+            <h2 class="login-title">👤 Anmelden</h2>
+            <p style="color: #888; margin-bottom: 20px;">
+                Erstelle einen Account um deine Statistiken zu speichern!
+            </p>
+            
+            <input type="text" id="loginUsername" class="login-input" 
+                   placeholder="Benutzername eingeben..." maxlength="20" />
+            
+            <div>
+                <button class="login-button" onclick="anmelden()">🚀 Anmelden</button>
+                <button class="login-button" onclick="schliesseLoginModal()" 
+                        style="background: linear-gradient(45deg, #666, #888);">↩️ Zurück</button>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 12px; color: #666; line-height: 1.4;">
+                💾 Deine Daten werden lokal in deinem Browser gespeichert<br>
+                🔒 Keine Passwörter erforderlich - nur Benutzername<br>
+                <strong>Hotkey:</strong> <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">ESC</span> Zurück
             </div>
         </div>
     </div>
