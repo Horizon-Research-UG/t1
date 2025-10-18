@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroGames - Das Dorf | GitHub Pages</title>
+    <meta name="description" content="NeuroGames - Das Dorf - Ein interaktives Browser-Spiel auf GitHub Pages gehostet">
+    <meta name="keywords" content="neurogames, dorf, spiel, browser, github pages">
+    <meta name="author" content="NeuroGames">
+    
+    <!-- GitHub Pages optimiert -->
+    <link rel="canonical" href="https://IHR-USERNAME.github.io/neurogames-dorf/">
+    <meta property="og:title" content="NeuroGames - Das Dorf">
+    <meta property="og:description" content="Ein interaktives Browser-Spiel - Von überall spielbar!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://IHR-USERNAME.github.io/neurogames-dorf/">
+    
+    <!-- Favicon für GitHub Pages -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏘️</text></svg>">
+    
+    <style>
+        /* GitHub Pages optimierte Styles */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            animation: backgroundShift 10s ease infinite;
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); }
+            50% { background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%); }
+        }
+        
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: containerFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shine 4s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+        }
+        
+        .github-info {
+            background: linear-gradient(45deg, #333, #24292e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .github-info a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .github-info a:hover {
+            text-decoration: underline;
+        }
+        
+        .menu {
+            padding: 50px;
+            text-align: center;
+        }
+        
+        .menu h2 {
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        
+        .menu-button {
+            display: block;
+            width: 400px;
+            margin: 25px auto;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .menu-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .menu-button:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .menu-button:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+        
+        .menu-btn-1 { 
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52); 
+            color: white; 
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+        }
+        .menu-btn-2 { 
+            background: linear-gradient(45deg, #4ecdc4, #44a08d); 
+            color: white; 
+            box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+        }
+        .menu-btn-3 { 
+            background: linear-gradient(45deg, #45b7d1, #96c93d); 
+            color: white; 
+            box-shadow: 0 8px 20px rgba(69, 183, 209, 0.3);
+        }
+        .menu-btn-4 { 
+            background: linear-gradient(45deg, #f093fb, #f5576c); 
+            color: white; 
+            box-shadow: 0 8px 20px rgba(240, 147, 251, 0.3);
+        }
+        .menu-btn-5 { 
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0); 
+            color: #2c3e50; 
+            box-shadow: 0 8px 20px rgba(255, 234, 167, 0.3);
+        }
+        
+        .dorf-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .dorf-title {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .bild-mit-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dorf-bild {
+            max-width: 700px;
+            max-height: 500px;
+            border: 5px solid #34495e;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            animation: imageFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes imageFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(1deg); }
+        }
+        
+        .dorf-bild:hover {
+            transform: scale(1.03) rotate(2deg);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+        }
+        
+        .richtung-button {
+            padding: 30px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .richtung-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+        }
+        
+        .richtung-button:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .links-button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+        }
+        
+        .rechts-button {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+        }
+        
+        .richtung-button:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .info-text {
+            margin: 40px 0;
+            font-size: 20px;
+            color: #7f8c8d;
+            font-style: italic;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px rgba(127, 140, 141, 0.5); }
+            to { text-shadow: 0 0 20px rgba(127, 140, 141, 0.8); }
+        }
+        
+        .zurueck-button {
+            background: linear-gradient(45deg, var(--danger-color), #c0392b);
+            color: white;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .zurueck-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(231, 76, 60, 0.4);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            animation: modalFadeIn 0.4s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            margin: 8% auto;
+            padding: 50px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: modalSlideIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-100px) scale(0.8); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        
+        .modal-title {
+            font-size: 32px;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .modal-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            white-space: pre-line;
+        }
+        
+        .modal-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 18px 40px;
+            border: 3px solid white;
+            border-radius: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+        
+        .modal-button:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 16px;
+        }
+        
+        .footer a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .bild-mit-buttons {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .dorf-bild {
+                max-width: 95%;
+                max-height: 300px;
+            }
+            
+            .richtung-button {
+                width: 250px;
+                margin: 10px 0;
+            }
+            
+            .menu-button {
+                width: 90%;
+                font-size: 18px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .modal-content {
+                margin: 20% auto;
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .menu {
+                padding: 30px 20px;
+            }
+            
+            .dorf-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="header">
+            <h1>🎮 NeuroGames - Das Dorf 🏘️</h1>
+            <p>GitHub Pages Edition - Kostenlos und für immer online!</p>
+        </div>
+        
+        <div class="github-info">
+            <strong>🐙 Gehostet auf GitHub Pages</strong> | 
+            Vollständig Open Source | 
+            <a href="https://github.com" target="_blank">Erstelle deine eigene Version</a>
+        </div>
+        
+        <div id="hauptmenu" class="menu">
+            <h2>=== NeuroGames Hauptmenü ===</h2>
+            <button class="menu-button menu-btn-1" onclick="zeigeSpielmenu()">🎮 Spielen</button>
+            <button class="menu-button menu-btn-2" onclick="zeigeDorf()">🏘️ Dorf besuchen</button>
+            <button class="menu-button menu-btn-3" onclick="zeigeNachricht('Einstellungen', '⚙️ Einstellungen werden geladen...\n\nVerfügbare Optionen:\n• Grafik-Qualität\n• Sound-Einstellungen\n• Steuerung anpassen')">⚙️ Einstellungen</button>
+            <button class="menu-button menu-btn-4" onclick="zeigeNachricht('Intro', '🎬 Intro wird abgespielt...\n\nWillkommen bei NeuroGames!\n\n🏘️ In einer weit entfernten Zeit...\nentdeckten Abenteurer ein mystisches Dorf...')">🎬 Intro abspielen</button>
+            <button class="menu-button menu-btn-5" onclick="spielBeenden()">🚪 Beenden</button>
+        </div>
+        
+        <div id="dorf" class="dorf-container">
+            <h1 class="dorf-title">🏘️ Das mystische Dorf 🏘️</h1>
+            
+            <div class="bild-mit-buttons">
+                <button class="richtung-button links-button" onclick="klickLinks()">
+                    ◀ Links
+                </button>
+                
+                <img src="das dorf.jpg" alt="Das mystische Dorf" class="dorf-bild" onerror="bildFehler()">
+                
+                <button class="richtung-button rechts-button" onclick="klickRechts()">
+                    Rechts ▶
+                </button>
+            </div>
+            
+            <div class="info-text">
+                🌟 Wählen Sie Ihren Pfad und erleben Sie ein Abenteuer! 🌟
+            </div>
+            
+            <button class="zurueck-button" onclick="zeigeHauptmenu()">
+                ← Zurück zum Hauptmenü
+            </button>
+        </div>
+        
+        <div class="footer">
+            Erstellt mit ❤️ von NeuroGames | 
+            <a href="https://github.com" target="_blank">GitHub Pages</a> | 
+            Open Source & Kostenlos
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-title" class="modal-title"></div>
+            <div id="modal-text" class="modal-text"></div>
+            <button class="modal-button" onclick="schliesseModal()">Verstanden</button>
+        </div>
+    </div>
+
+    <script>
+        // GitHub Pages optimiertes JavaScript
+        
+        function zeigeHauptmenu() {
+            document.getElementById('dorf').style.display = 'none';
+            document.getElementById('hauptmenu').style.display = 'block';
+            console.log('🏠 Zurück zum Hauptmenü (GitHub Pages)');
+            document.title = 'NeuroGames - Das Dorf | GitHub Pages';
+        }
+        
+        function zeigeSpielmenu() {
+            zeigeNachricht('🎮 Spiel-Menü', '🎮 Das Spiel-Menü wird geladen...\n\n✨ Verfügbare Optionen:\n• Neues Abenteuer starten\n• Gespeichertes Spiel laden\n• Tutorial durchspielen\n• Online-Multiplayer\n• Achievements ansehen\n\n🌍 GitHub Pages ermöglicht weltweiten Zugriff!');
+        }
+        
+        function zeigeDorf() {
+            document.getElementById('hauptmenu').style.display = 'none';
+            document.getElementById('dorf').style.display = 'block';
+            console.log('🏘️ Das mystische Dorf wird erkundet (GitHub Pages)');
+            document.title = 'NeuroGames - Im mystischen Dorf | GitHub Pages';
+        }
+        
+        function klickLinks() {
+            zeigeNachricht(
+                '🏃‍♂️ Der linke Pfad',
+                '🌟 Sie wählen den linken Pfad!\n\n🔮 Ihre Entdeckungen:\n• Ein schimmerndes Portal öffnet sich ✨\n• Alte Runen leuchten auf dem Pfad 📜\n• Magische Kristalle schweben in der Luft 💎\n• Eine geheimnisvolle Stimme flüstert Ihren Namen 👻\n\n⚡ Die Magie des Dorfes erwacht!\n\n🌍 Andere Spieler auf GitHub Pages haben diesen Weg gewählt!'
+            );
+            console.log('🎮 GitHub Pages Spieler wählte den LINKEN Pfad - Magie entfesselt!');
+        }
+        
+        function klickRechts() {
+            zeigeNachricht(
+                '🏃‍♀️ Der rechte Pfad', 
+                '🏪 Sie wählen den rechten Pfad!\n\n🎭 Ihre Begegnungen:\n• Ein lebendiger Marktplatz voller Händler 🛒\n• Freundliche Dorfbewohner grüßen Sie herzlich 👥\n• Ein alter Händler bietet seltene Schätze an 💰\n• Eine gemütliche Taverne lädt Sie ein 🍺\n• Reisende erzählen von fernen Ländern 🗺️\n\n🤝 Die Gemeinschaft heißt Sie willkommen!\n\n🌍 GitHub Pages verbindet Spieler weltweit!'
+            );
+            console.log('🎮 GitHub Pages Spieler wählte den RECHTEN Pfad - Gemeinschaft gefunden!');
+        }
+        
+        function zeigeNachricht(titel, text) {
+            document.getElementById('modal-title').textContent = titel;
+            document.getElementById('modal-text').textContent = text;
+            document.getElementById('modal').style.display = 'block';
+        }
+        
+        function schliesseModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        function spielBeenden() {
+            if (confirm('🤔 Möchten Sie das Abenteuer wirklich beenden?\n\nIhre Reise im mystischen Dorf war einzigartig!')) {
+                zeigeNachricht('👋 Auf Wiedersehen, Abenteurer!', '🌟 Vielen Dank, dass Sie unser Spiel gespielt haben!\n\n🏘️ Das mystische Dorf wird auf Sie warten...\n\n🐙 Powered by GitHub Pages\n🌍 Für immer kostenlos und zugänglich\n\n✨ Teilen Sie dieses Abenteuer mit Freunden!');
+            }
+        }
+        
+        function bildFehler() {
+            console.log('⚠️ Bild konnte nicht geladen werden (GitHub Pages)');
+            const bildElement = document.querySelector('.dorf-bild');
+            bildElement.style.display = 'none';
+            
+            const container = document.querySelector('.bild-mit-buttons');
+            const ersatzText = document.createElement('div');
+            ersatzText.innerHTML = `
+                <div style="padding: 80px; background: linear-gradient(45deg, #ecf0f1, #bdc3c7); border-radius: 20px; color: #2c3e50; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: pulse 2s infinite;">
+                    🏘️<br><strong>Das mystische Dorf</strong><br>
+                    <small style="font-size: 16px; opacity: 0.8;">GitHub Pages Edition</small><br>
+                    <small style="font-size: 14px; opacity: 0.6;">Bild wird geladen...</small>
+                </div>
+            `;
+            container.insertBefore(ersatzText, bildElement);
+        }
+        
+        // Event Listeners
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                schliesseModal();
+            }
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                schliesseModal();
+            }
+            if (event.key === 'ArrowLeft') {
+                klickLinks();
+            }
+            if (event.key === 'ArrowRight') {
+                klickRechts();
+            }
+            if (event.key === 'Enter') {
+                zeigeDorf();
+            }
+        });
+        
+        // Initialisierung
+        window.onload = function() {
+            console.log('🌍 NeuroGames - Das Dorf (GitHub Pages Edition) geladen!');
+            console.log('⌨️ Tastatur-Shortcuts: ← → Pfeiltasten, Enter = Dorf, Esc = Schließen');
+            console.log('🐙 Gehostet auf GitHub Pages - Für immer kostenlos!');
+            console.log('🌟 Teilen Sie diese URL mit Freunden weltweit!');
+            
+            // Smooth scrolling
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Preload image
+            const img = new Image();
+            img.src = 'das dorf.jpg';
+        };
+        
+        // GitHub Pages spezifische Funktionen
+        function teileMitFreunden() {
+            const url = window.location.href;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'NeuroGames - Das Dorf',
+                    text: 'Spiele dieses coole Browser-Spiel!',
+                    url: url
+                });
+            } else {
+                // Fallback: URL in Zwischenablage kopieren
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('🔗 URL wurde in die Zwischenablage kopiert!\nTeile sie mit deinen Freunden!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroGames - Das Dorf</title>
+    <style>
+        /* Basis-Styling für die Webseite */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #87CEEB, #98FB98);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        /* Container für das Spiel */
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Header-Bereich */
+        .header {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Hauptmenü-Styling */
+        .menu {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .menu h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .menu-button {
+            display: block;
+            width: 300px;
+            margin: 15px auto;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .menu-btn-1 { background: #FF6B6B; color: white; }
+        .menu-btn-2 { background: #4ECDC4; color: white; }
+        .menu-btn-3 { background: #45B7D1; color: white; }
+        .menu-btn-4 { background: #96CEB4; color: white; }
+        .menu-btn-5 { background: #FFEAA7; color: #333; }
+        
+        /* Dorf-Bereich */
+        .dorf-container {
+            display: none;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .dorf-title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        /* Bild-Container mit Buttons */
+        .bild-mit-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dorf-bild {
+            max-width: 500px;
+            max-height: 350px;
+            border: 3px solid #34495e;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Richtungs-Buttons */
+        .richtung-button {
+            padding: 20px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        
+        .links-button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .rechts-button {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .richtung-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Info-Text */
+        .info-text {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+        
+        /* Zurück-Button */
+        .zurueck-button {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .zurueck-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Modal für Nachrichten */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .modal-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+        
+        .modal-button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .bild-mit-buttons {
+                flex-direction: column;
+            }
+            
+            .dorf-bild {
+                max-width: 90%;
+            }
+            
+            .richtung-button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header -->
+        <div class="header">
+            🎮 NeuroGames - Das Dorf 🏘️
+        </div>
+        
+        <!-- Hauptmenü -->
+        <div id="hauptmenu" class="menu">
+            <h2>=== NEUROGAMES HAUPTMENÜ ===</h2>
+            <button class="menu-button menu-btn-1" onclick="zeigeSpielmenu()">1. Spielen</button>
+            <button class="menu-button menu-btn-2" onclick="zeigeDorf()">2. Dorf besuchen</button>
+            <button class="menu-button menu-btn-3" onclick="zeigeNachricht('Einstellungen', 'Einstellungen werden geladen...')">3. Einstellungen</button>
+            <button class="menu-button menu-btn-4" onclick="zeigeNachricht('Intro', 'Intro wird abgespielt...')">4. Intro abspielen</button>
+            <button class="menu-button menu-btn-5" onclick="spielBeenden()">5. Beenden</button>
+        </div>
+        
+        <!-- Dorf-Bereich -->
+        <div id="dorf" class="dorf-container">
+            <h1 class="dorf-title">🏘️ DAS DORF 🏘️</h1>
+            
+            <div class="bild-mit-buttons">
+                <!-- Links-Button -->
+                <button class="richtung-button links-button" onclick="klickLinks()">
+                    ◀ LINKS
+                </button>
+                
+                <!-- Dorf-Bild -->
+                <img src="das dorf.jpg" alt="Das Dorf" class="dorf-bild" onerror="bildFehler()">
+                
+                <!-- Rechts-Button -->
+                <button class="richtung-button rechts-button" onclick="klickRechts()">
+                    RECHTS ▶
+                </button>
+            </div>
+            
+            <div class="info-text">
+                Klicken Sie auf LINKS oder RECHTS für Abenteuer!
+            </div>
+            
+            <button class="zurueck-button" onclick="zeigeHauptmenu()">
+                Zurück zum Hauptmenü
+            </button>
+        </div>
+    </div>
+    
+    <!-- Modal für Nachrichten -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-title" class="modal-title"></div>
+            <div id="modal-text" class="modal-text"></div>
+            <button class="modal-button" onclick="schliesseModal()">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript für die Spiel-Logik
+        
+        function zeigeHauptmenu() {
+            // Verstecke alle anderen Bereiche
+            document.getElementById('dorf').style.display = 'none';
+            // Zeige das Hauptmenü
+            document.getElementById('hauptmenu').style.display = 'block';
+            console.log('🏠 Zurück zum Hauptmenü');
+        }
+        
+        function zeigeSpielmenu() {
+            zeigeNachricht('Spiel-Menü', 'Das Spiel-Menü wird implementiert...\n\n🎮 Verfügbare Optionen:\n• Neues Spiel\n• Spiel laden\n• Tutorial');
+        }
+        
+        function zeigeDorf() {
+            // Verstecke das Hauptmenü
+            document.getElementById('hauptmenu').style.display = 'none';
+            // Zeige das Dorf
+            document.getElementById('dorf').style.display = 'block';
+            console.log('🏘️ Dorf wird angezeigt');
+        }
+        
+        function klickLinks() {
+            zeigeNachricht(
+                '🏃‍♂️ Links-Abenteuer',
+                '🌟 Sie gehen nach LINKS!\n\nSie entdecken:\n• Ein geheimnisvolles Portal ✨\n• Einen alten Pfad im Wald 🌲\n• Glitzernde Kristalle am Boden 💎\n\nWas möchten Sie tun?'
+            );
+            console.log('🎮 Spieler klickte LINKS - Portal entdeckt!');
+        }
+        
+        function klickRechts() {
+            zeigeNachricht(
+                '🏃‍♀️ Rechts-Abenteuer', 
+                '🏪 Sie gehen nach RECHTS!\n\nSie finden:\n• Einen lebhaften Marktplatz 🛒\n• Freundliche Dorfbewohner 👥\n• Einen Händler mit seltenen Waren 💰\n\nDer Handel beginnt!'
+            );
+            console.log('🎮 Spieler klickte RECHTS - Marktplatz erreicht!');
+        }
+        
+        function zeigeNachricht(titel, text) {
+            // Setze Titel und Text
+            document.getElementById('modal-title').textContent = titel;
+            document.getElementById('modal-text').textContent = text;
+            // Zeige das Modal
+            document.getElementById('modal').style.display = 'block';
+        }
+        
+        function schliesseModal() {
+            // Verstecke das Modal
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        function spielBeenden() {
+            if (confirm('Möchten Sie das Spiel wirklich beenden?')) {
+                zeigeNachricht('Auf Wiedersehen!', 'Vielen Dank fürs Spielen!\n\n🎮 NeuroGames');
+            }
+        }
+        
+        function bildFehler() {
+            // Fallback wenn Bild nicht geladen werden kann
+            console.log('⚠️ Bild konnte nicht geladen werden');
+            const bildElement = document.querySelector('.dorf-bild');
+            bildElement.alt = '🏘️ Das Dorf (Bild nicht verfügbar)';
+            bildElement.style.display = 'none';
+            
+            // Zeige Ersatz-Text
+            const container = document.querySelector('.bild-mit-buttons');
+            const ersatzText = document.createElement('div');
+            ersatzText.innerHTML = '🏘️<br><strong>DAS DORF</strong><br><small>(Bild wird geladen...)</small>';
+            ersatzText.style.cssText = 'padding: 50px; background: #ecf0f1; border-radius: 10px; color: #2c3e50; font-size: 18px;';
+            container.insertBefore(ersatzText, bildElement);
+        }
+        
+        // Modal schließen wenn außerhalb geklickt wird
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                schliesseModal();
+            }
+        }
+        
+        // Tastatur-Navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                schliesseModal();
+            }
+            if (event.key === 'ArrowLeft') {
+                klickLinks();
+            }
+            if (event.key === 'ArrowRight') {
+                klickRechts();
+            }
+        });
+        
+        // Beim Laden der Seite
+        window.onload = function() {
+            console.log('🎮 NeuroGames - Das Dorf im Browser geladen!');
+            console.log('⌨️ Tipp: Verwenden Sie Pfeiltasten für Links/Rechts');
+        };
+    </script>
+</body>
+</html>
