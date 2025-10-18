@@ -510,6 +510,205 @@
             line-height: 1.6;
         }
         
+        /* Spiel-Menü Modal Styles */
+        .spiel-menu-modal {
+            display: none;
+            position: fixed;
+            z-index: 1500;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        .spiel-menu-content {
+            position: relative;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 600px;
+            background: linear-gradient(135deg, var(--container-bg), #2a2a2a);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        
+        .spiel-menu-title {
+            color: var(--primary-color);
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .spiel-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .spiel-button {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 18px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .spiel-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+        }
+        
+        .spiel-button.erd-addition {
+            background: linear-gradient(45deg, #8B4513, #CD853F);
+        }
+        
+        .spiel-button.erd-addition:hover {
+            background: linear-gradient(45deg, #CD853F, #DEB887);
+        }
+        
+        /* Erd-Addition Spiel Styles */
+        .erd-addition-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+        
+        .erd-addition-content {
+            position: relative;
+            margin: 3% auto;
+            width: 90%;
+            max-width: 800px;
+            background: linear-gradient(135deg, #2F1B14, #4A2C2A);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.3);
+            text-align: center;
+            border: 3px solid #8B4513;
+        }
+        
+        .erd-title {
+            color: #DEB887;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .erd-level {
+            color: #CD853F;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .brocken-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .brocken {
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            color: #FFFFFF;
+            font-size: 48px;
+            font-weight: bold;
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border: 3px solid #CD853F;
+            animation: brockenPulse 2s infinite;
+        }
+        
+        @keyframes brockenPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .plus-zeichen {
+            font-size: 48px;
+            color: #DEB887;
+            font-weight: bold;
+        }
+        
+        .eingabe-container {
+            margin: 40px 0;
+        }
+        
+        .erd-input {
+            background: rgba(222, 184, 135, 0.1);
+            border: 3px solid #8B4513;
+            border-radius: 15px;
+            padding: 20px;
+            font-size: 24px;
+            color: #DEB887;
+            text-align: center;
+            width: 200px;
+            margin: 0 20px;
+        }
+        
+        .erd-input:focus {
+            outline: none;
+            border-color: #CD853F;
+            background: rgba(222, 184, 135, 0.2);
+        }
+        
+        .erd-submit {
+            background: linear-gradient(45deg, #228B22, #32CD32);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+        }
+        
+        .erd-submit:hover {
+            background: linear-gradient(45deg, #32CD32, #7FFF00);
+            transform: translateY(-2px);
+        }
+        
+        .erd-result {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .erd-success {
+            color: #32CD32;
+        }
+        
+        .erd-error {
+            color: #FF4500;
+        }
+        
         @media (max-width: 768px) {
             .bild-mit-buttons {
                 flex-direction: column;
@@ -557,6 +756,53 @@
             .video-controls {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .spiel-menu-content {
+                margin: 10% auto;
+                padding: 30px 20px;
+            }
+            
+            .spiel-menu-title {
+                font-size: 28px;
+            }
+            
+            .spiel-button {
+                font-size: 16px;
+                padding: 15px 25px;
+            }
+            
+            .erd-addition-content {
+                margin: 5% auto;
+                padding: 30px 20px;
+            }
+            
+            .erd-title {
+                font-size: 28px;
+            }
+            
+            .brocken-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .brocken {
+                width: 100px;
+                height: 100px;
+                font-size: 36px;
+            }
+            
+            .erd-input {
+                width: 150px;
+                font-size: 20px;
+                margin: 10px 0;
+            }
+            
+            .erd-submit {
+                margin-left: 0;
+                margin-top: 20px;
+                font-size: 18px;
+                padding: 15px 30px;
             }
         }
         
@@ -647,7 +893,9 @@
         }
         
         function zeigeSpielmenu() {
-            zeigeNachricht('🎮 Spiel-Menü', '🎮 Das Spiel-Menü wird geladen...\n\n✨ Verfügbare Optionen:\n• Neues Abenteuer starten\n• Gespeichertes Spiel laden\n• Tutorial durchspielen\n• Online-Multiplayer\n• Achievements ansehen\n\n🌍 GitHub Pages ermöglicht weltweiten Zugriff!');
+            // Spiel-Menü Modal anzeigen
+            const spielMenuModal = document.getElementById('spielMenuModal');
+            spielMenuModal.style.display = 'block';
         }
         
         function zeigeDorf() {
@@ -803,6 +1051,89 @@
                 videoElement.msRequestFullscreen();
             }
         }
+        
+        // Spiel-Menü Funktionen
+        function schliesseSpielmenu() {
+            document.getElementById('spielMenuModal').style.display = 'none';
+        }
+        
+        // Erd-Addition Spiel Funktionen
+        let aktuellerLevel = 1;
+        let aktuelleAufgabe = {};
+        
+        function starteErdAddition() {
+            schliesseSpielmenu();
+            document.getElementById('erdAdditionModal').style.display = 'block';
+            starteLevel(1);
+        }
+        
+        function starteLevel(level) {
+            aktuellerLevel = level;
+            document.getElementById('erdLevel').textContent = `Level ${level}: Zwei Brocken werden zu einem großen Brocken`;
+            
+            // Zufällige Zahlen generieren (1-10 für Level 1)
+            const maxZahl = 10;
+            const a = Math.floor(Math.random() * maxZahl) + 1;
+            const b = Math.floor(Math.random() * maxZahl) + 1;
+            
+            aktuelleAufgabe = { a: a, b: b, antwort: a + b };
+            
+            // Brocken anzeigen
+            document.getElementById('brocken1').textContent = a;
+            document.getElementById('brocken2').textContent = b;
+            
+            // Eingabefeld leeren und Ergebnis zurücksetzen
+            document.getElementById('erdAntwort').value = '';
+            document.getElementById('erdErgebnis').innerHTML = '';
+            document.getElementById('erdErgebnis').className = 'erd-result';
+        }
+        
+        function pruefeErdAntwort() {
+            const eingabe = parseInt(document.getElementById('erdAntwort').value);
+            const ergebnisDiv = document.getElementById('erdErgebnis');
+            
+            if (isNaN(eingabe)) {
+                ergebnisDiv.innerHTML = '❌ Bitte geben Sie eine gültige Zahl ein!';
+                ergebnisDiv.className = 'erd-result erd-error';
+                return;
+            }
+            
+            if (eingabe === aktuelleAufgabe.antwort) {
+                ergebnisDiv.innerHTML = `
+                    ✅ Richtig! ${aktuelleAufgabe.a} + ${aktuelleAufgabe.b} = ${aktuelleAufgabe.antwort}
+                    <br>🎉 Die Brocken wurden erfolgreich verbunden!
+                `;
+                ergebnisDiv.className = 'erd-result erd-success';
+                
+                // Nach 3 Sekunden neue Aufgabe
+                setTimeout(() => {
+                    starteLevel(aktuellerLevel);
+                }, 3000);
+                
+            } else {
+                ergebnisDiv.innerHTML = `
+                    ❌ Nicht ganz richtig. Versuchen Sie es noch einmal!
+                    <br>💡 Tipp: Zählen Sie die Brocken zusammen.
+                `;
+                ergebnisDiv.className = 'erd-result erd-error';
+            }
+        }
+        
+        function schliesseErdAddition() {
+            document.getElementById('erdAdditionModal').style.display = 'none';
+        }
+        
+        // Enter-Taste für Eingabe
+        document.addEventListener('DOMContentLoaded', function() {
+            const erdInput = document.getElementById('erdAntwort');
+            if (erdInput) {
+                erdInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        pruefeErdAntwort();
+                    }
+                });
+            }
+        });
     </script>
     
     <!-- Video Modal -->
@@ -823,6 +1154,57 @@
                 <button class="video-button close" onclick="schliesseVideo()">
                     ❌ Schließen
                 </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Spiel-Menü Modal -->
+    <div id="spielMenuModal" class="spiel-menu-modal">
+        <div class="spiel-menu-content">
+            <h2 class="spiel-menu-title">🎮 Spiel-Menü</h2>
+            <div class="spiel-buttons">
+                <button class="spiel-button erd-addition" onclick="starteErdAddition()">
+                    🌍 Erd-Addition
+                    <br><small>Mathematik-Abenteuer mit Brocken</small>
+                </button>
+                <button class="spiel-button" onclick="zeigeNachricht('🎯 Coming Soon', '⚔️ Weitere Spiele werden bald verfügbar sein!\n\n🎮 Geplante Abenteuer:\n• Wasser-Subtraktion\n• Feuer-Multiplikation\n• Luft-Division\n• Mystische Rätsel')">
+                    🎯 Weitere Abenteuer
+                    <br><small>Coming Soon...</small>
+                </button>
+            </div>
+            <button class="video-button close" onclick="schliesseSpielmenu()">
+                ❌ Zurück
+            </button>
+        </div>
+    </div>
+    
+    <!-- Erd-Addition Spiel Modal -->
+    <div id="erdAdditionModal" class="erd-addition-modal">
+        <div class="erd-addition-content">
+            <h2 class="erd-title">🌍 Erd-Addition</h2>
+            <p id="erdLevel" class="erd-level">Level 1: Zwei Brocken werden zu einem großen Brocken</p>
+            
+            <div class="brocken-container">
+                <div class="brocken" id="brocken1">5</div>
+                <div class="plus-zeichen">+</div>
+                <div class="brocken" id="brocken2">3</div>
+                <div class="plus-zeichen">=</div>
+                <div class="plus-zeichen">?</div>
+            </div>
+            
+            <div class="eingabe-container">
+                <p style="color: #DEB887; font-size: 18px; margin-bottom: 20px;">
+                    🪨 Verbinden Sie die Brocken! Wie groß ist der neue Brocken?
+                </p>
+                <input type="number" id="erdAntwort" class="erd-input" placeholder="Ihre Antwort..." />
+                <button class="erd-submit" onclick="pruefeErdAntwort()">✨ Verbinden</button>
+            </div>
+            
+            <div id="erdErgebnis" class="erd-result"></div>
+            
+            <div style="margin-top: 30px;">
+                <button class="video-button" onclick="starteLevel(1)">🔄 Neue Aufgabe</button>
+                <button class="video-button close" onclick="schliesseErdAddition()">❌ Beenden</button>
             </div>
         </div>
     </div>
